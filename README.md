@@ -93,4 +93,4 @@ MIT. See [LICENSE](LICENSE).
 
 ## Acknowledgements
 
-Created with help from OpenAI Codex. The design also intentionally honors the work of the harness engineering community collected by `ai-boost/awesome-harness-engineering`.
+The design also intentionally honors the work of the harness engineering community collected by `ai-boost/awesome-harness-engineering`.
