@@ -1,0 +1,4 @@
+interface:
+  display_name: "Harness Architect"
+  short_description: "Generic harness docs and agent orchestration"
+  default_prompt: "Use $harness-architect to create a project harness, coordinate subagents, and run quality gates."

@@ -1,0 +1,33 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs and temp
+*.log
+*.tmp
+tmp/
+temp/
+
+# Build outputs
+dist/
+build/
+target/
+out/
+coverage/
+
+# Dependencies
+node_modules/
+.venv/
+venv/
+
+# Local secrets/config
+.env
+.env.*
+*.local
+*.local.*
+
+# Claude/Codex runtime state
+.claude/settings.local.json
+.codex/
