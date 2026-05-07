@@ -5,10 +5,46 @@ on:
   pull_request:
 
 jobs:
-  validate:
+  validate-windows:
+    name: Validate (Windows / pwsh)
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - name: Validate repository structure
         shell: pwsh
         run: ./scripts/validate-repo.ps1
+
+  validate-linux:
+    name: Validate (Linux / pwsh)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PowerShell
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y powershell
+      - name: Validate repository structure (pwsh)
+        shell: pwsh
+        run: ./scripts/validate-repo.ps1
+      - name: Validate sh script self-test (docs-check)
+        shell: bash
+        run: |
+          chmod +x skills/harness-architect/scripts/harness-architect.sh
+          # Smoke-test: commands must exit 0
+          skills/harness-architect/scripts/harness-architect.sh commands
+
+  validate-macos:
+    name: Validate (macOS / pwsh)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PowerShell
+        run: brew install --cask powershell
+      - name: Validate repository structure (pwsh)
+        shell: pwsh
+        run: ./scripts/validate-repo.ps1
+      - name: Validate sh script self-test (commands)
+        shell: bash
+        run: |
+          chmod +x skills/harness-architect/scripts/harness-architect.sh
+          skills/harness-architect/scripts/harness-architect.sh commands

@@ -44,9 +44,10 @@ foreach ($term in @("orchestrator", "executor", "evaluator", "harness-agent-json
     }
 }
 
+$pwshExe = if (Get-Command pwsh -ErrorAction SilentlyContinue) { "pwsh" } else { "powershell" }
 Push-Location $Root
 try {
-    & powershell -ExecutionPolicy Bypass -File "skills/harness-architect/scripts/harness-architect.ps1" -Command commands | Out-Null
+    & $pwshExe -ExecutionPolicy Bypass -File "skills/harness-architect/scripts/harness-architect.ps1" -Command commands | Out-Null
     if ($LASTEXITCODE -ne 0) {
         Add-Issue "Harness Architect command script failed"
     }
