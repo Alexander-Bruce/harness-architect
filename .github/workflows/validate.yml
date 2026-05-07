@@ -38,8 +38,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install PowerShell
-        run: brew install --cask powershell
+      - name: Install PowerShell if not pre-installed
+        run: |
+          if ! command -v pwsh >/dev/null 2>&1; then
+            brew install --cask powershell@preview
+          fi
       - name: Validate repository structure (pwsh)
         shell: pwsh
         run: ./scripts/validate-repo.ps1
